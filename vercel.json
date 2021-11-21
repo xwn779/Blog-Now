@@ -1,0 +1,50 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/comment(.*)",
+      "destination": "/api/comment"
+    },
+    {
+      "source": "/api/config(.*)",
+      "destination": "/api/config"
+    },
+    {
+      "source": "/api/post(.*)",
+      "destination": "/api/post"
+    },
+    {
+      "source": "/api/user(.*)",
+      "destination": "/api/user"
+    },
+    {
+      "source": "/api(.*)",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api(.*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "origin",
+          "value": "http://localhost:3000"
+        }
+      ],
+      "headers": [
+        {
+          "key": "access-control-allow-origin",
+          "value": "http://localhost:3000"
+        },
+        {
+          "key": "access-control-allow-credentials",
+          "value": "true"
+        }
+      ]
+    }
+  ]
+}

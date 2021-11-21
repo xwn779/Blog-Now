@@ -1,0 +1,223 @@
+// Header
+@mixin header-shared($shadow-color, $bg-width)
+  position: relative
+  text-shadow: 0px 2px 0 var(--theme-text-shadow-color)
+  z-index: 1
+  &::after
+    content: ""
+    width: $bg-width
+    height: 0.5em
+    display: block
+    position: absolute
+    background-color: $shadow-color
+    pointer-events: none
+    border-radius: 1em
+    left: -2px
+    bottom: 0px
+    z-index: -1
+
+h1, h2, h3, h4, h5, h6
+  font-weight: 600
+h1
+  font-size: 2.2rem
+h2
+  font-size: 1.8rem
+h3
+  font-size: 1.5rem
+h4, h5, h6
+  font-size: 1.2rem
+
+// Links
+a
+  --color: var(--theme-link-color)
+  color: var(--color)
+  text-decoration: none
+  position: relative
+  display: inline-block
+
+  &.plain
+    display: unset
+
+  &:not(.plain)::after
+    content: ''
+    display: block
+    position: absolute
+    width: 100%
+    height: 0.1em
+    bottom: -0.1em
+    left: 0
+    background-color: var(--color)
+    visibility: hidden
+    transform: scaleX(0)
+    transition: all 0.4s ease-in-out
+
+  &:not(.plain):hover::after,
+  &.router-link-active::after,
+  &.tab-active::after,
+  &.is-active::after
+    visibility: visible
+    transform: scaleX(1)
+
+  &.button
+    padding: 0.2rem 0.4rem
+    background-color: var(--theme-tag-color)
+    transition: all .4s ease
+    cursor: pointer
+
+    &:hover
+      background-color: rgba(var(--theme-link-color--rgb), 1)
+      color: var(--theme-accent-link-color)
+
+hr,
+.hr
+  border: none
+  border-bottom: 4px dotted rgba(var(--theme-accent-color--rgb), 0.5)
+  margin: 1rem 0
+
+// Button
+button
+  display: inline-block
+  padding: 0.4rem 0.8rem
+  font-size: 1rem
+  border: none
+  border-radius: 4px
+  background-color: var(--theme-accent-color)
+  color: #fff
+  cursor: pointer
+
+  &:hover
+    background-color: var(--theme-accent-color-darken)
+
+  &:focus
+    background-color: var(--theme-accent-color)
+    box-shadow: 0 0 0 2px #fff inset, 0 0 0 2px var(--theme-accent-color)
+
+  &:disabled
+    background-color: #ccc
+    cursor: not-allowed
+
+    &:active
+      box-shadow: 0 0 0 2px #fff inset, 0 0 0 2px #ccc
+
+// Card
+.card
+  background-color: #fff
+  border-radius: 8px
+  padding: 1rem
+  transition: box-shadow .6s ease
+  box-shadow: var(--theme-box-shadow)
+
+  &.gap
+    margin-top: 1rem
+    margin-bottom: 1.4rem
+
+  &:hover
+    box-shadow: var(--theme-box-shadow-hover)
+
+// Tags
+.tags-list
+  line-height: 1.6
+.tag
+  line-height: 1em
+  display: inline-block
+  padding: 2px 4px
+  margin-right: 0.4rem
+  background-color: var(--theme-tag-color)
+  &.router-link-active
+    color: #fff
+    background-color: var(--theme-link-color)
+
+input.site-style,
+textarea.site-style
+  width: 100%
+  padding: 0.4em 0.75em
+  font-size: 1rem
+  line-height: 1em
+  border: none
+  border-radius: 0.5em
+  background-color: rgba(0, 0, 0, 0.04)
+  outline: none
+  &:hover
+    background-color: rgba(0, 0, 0, 0.08)
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.25)
+  &:focus
+    background-color: rgba(0, 0, 0, 0.04)
+    box-shadow: 0 0 0 2px var(--theme-accent-color)
+
+// Responsive
+.responsive,
+.body-inner
+  padding-left: 5%
+  padding-right: 5%
+  max-width: 1200px
+  margin-left: auto
+  margin-right: auto
+
+// Table
+table
+  width: 100%
+  max-width: 100%
+  margin-bottom: 20px
+  border-spacing: 0
+  border-collapse: collapse
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1)
+  border-radius: 8px
+
+  tr:nth-of-type(2n)
+    background-color: rgba(var(--theme-accent-color--rgb), 0.1)
+
+  td
+    padding: 0.5rem
+    border-bottom: 1px solid #ccc
+
+// Loading
+.loading-cover
+  position: relative
+  &::before,&::after
+    content: ""
+    width: 100%
+    height: 100%
+    display: block
+    position: absolute
+  &::before
+    background-image: url(/images/spinner.svg)
+    background-size: 75px
+    background-repeat: no-repeat
+    background-position: center
+    top: 50%
+    left: 50%
+    transform: translateX(-50%) translateY(-50%)
+    z-index: 6
+  &::after
+    top: 0
+    left: 0
+    background-color: rgba(200,200,200,0.2)
+    z-index: 5
+
+.xicon
+  vertical-align: middle
+
+// Code
+pre:not(.hljs)
+  overflow: auto
+  background: rgba(172, 232, 255, 0.2)
+  padding: 0.4rem
+  border: 1px solid #cccccc
+  border-radius: 6px
+
+code
+  background-color: #efefef
+  display: inline
+  border-radius: 2px
+  padding: .1rem .2rem
+  color: #e02080
+  word-break: break-word
+
+// Tabber
+.tabber
+  .tabber-tabs
+    margin-bottom: 1rem
+    display: flex
+    gap: 1rem
+    a
+      cursor: pointer
